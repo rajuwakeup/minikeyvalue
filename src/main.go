@@ -28,8 +28,8 @@ type App struct {
 
 func (a *App) UnlockKey(key []byte) {
   a.mlock.Lock()
+  defer a.mlock.Unlock()
   delete(a.lock, string(key))
-  a.mlock.Unlock()
 }
 
 func (a *App) LockKey(key []byte) bool {
